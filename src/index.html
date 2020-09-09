@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>存在チェックの検証</title>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class=".some-classA">要素A</div>
+    <div class=".some-classB">要素B</div>
+    <script>
+      const areExist = function(elements) {
+        return Object.keys(elements).every(function(key) {
+          const el = elements[key];
+          return el.length > 0;
+        })
+      }
+
+      (function(){
+        const targetElements = {
+          $el1: $('.some-classA'),
+          $el2: $('div.some-classB')
+        }
+
+        // 対象の要素が1つでもなかったら何もせずに終了
+        if (!areExist(targetElements)) {
+          console.log('noElement')
+          return
+        }
+
+        // 以下に施策を書く
+        targetElements.$el1.hide()
+        targetElements.$el2.hide()
+
+      })()
+    </script>
+  </body>
+</html>
